@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import ast
 import re
 from distutils.core import setup
 
