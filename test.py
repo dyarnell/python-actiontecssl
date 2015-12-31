@@ -19,7 +19,8 @@ if __name__ == '__main__':
 
     a = ActiontecSSL(host=args.host, port=args.port, password=args.password)
     a.connect()
-    print a.processes()
-    print a.ifstats()
-    print a.meminfo()
-    print a.cpus()
+    print (a.interfaces())
+    print (a.processes())
+    print (a.ifstats())
+    print (a.meminfo())
+    print (a.cpus())

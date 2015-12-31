@@ -68,6 +68,22 @@ class ActiontecSSL(object):
              log.error('Connection not made for %s' % self.__class__.__name__)
              return None
 
+    def interfaces(self):
+        res = self.run('net ifconfig')
+
+        iface = None
+        interfaces = {}
+
+        for line in res.split('\n'):
+            if 'Device' in line:
+                if iface:
+                    interfaces[iface['name']] = iface
+                iface = { 'name': line.split()[1] }
+            if 'state=' in line:
+                iface['state'] = line.split('=')[-1].strip()
+
+        return interfaces
+
     def ifstats(self):
         res = self.run('system cat /proc/net/dev')
 
